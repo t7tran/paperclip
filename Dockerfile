@@ -1,0 +1,31 @@
+FROM node:24.14.1-bookworm-slim
+
+RUN sed -i 's/Components: main/Components: main contrib/g' /etc/apt/sources.list.d/debian.sources && \
+    apt update && \
+    apt install -y curl git git-lfs && \
+    curl -fsSLo /usr/local/bin/jq https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-linux64 && \
+    chmod +x /usr/local/bin/jq && \
+    curl -fsSLo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_linux_amd64 && \
+    chmod +x /usr/local/bin/yq && \
+    apt install -y --no-install-recommends \
+        fonts-dejavu-core \
+        fonts-dejavu-extra \
+        fonts-freefont-ttf \
+        fonts-ipafont-gothic \
+        fonts-kacst \
+        fonts-noto-cjk \
+        fonts-noto-cjk-extra \
+        fonts-thai-tlwg \
+        fonts-wqy-microhei \
+        fonts-wqy-zenhei \
+        ttf-mscorefonts-installer \
+        && \
+    fc-cache -f -v && \
+    npx -y playwright@latest install-deps && \
+    npx -y playwright@latest install chrome && \
+    npm i -g paperclipai && \
+    npm i -g opencode-ai && \
+    rm -rf /tmp/*
+
+USER node
+
