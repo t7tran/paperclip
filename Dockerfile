@@ -2,9 +2,17 @@ FROM node:24.14.1-bookworm-slim
 
 RUN sed -i 's/Components: main/Components: main contrib/g' /etc/apt/sources.list.d/debian.sources && \
     apt update && \
-    apt install -y curl git git-lfs && \
-    curl -fsSLo /usr/local/bin/jq https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-linux64 && \
-    chmod +x /usr/local/bin/jq && \
+    apt install -y \
+                    curl \
+                    fd-find \
+                    gh \
+                    git \
+                    git-lfs \
+                    jq \
+                    less \
+                    procps \
+                    ripgrep \
+                    && \
     curl -fsSLo /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_linux_amd64 && \
     chmod +x /usr/local/bin/yq && \
     apt install -y --no-install-recommends \
