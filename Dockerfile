@@ -23,7 +23,7 @@ RUN sed -i 's/Components: main/Components: main contrib/g' /etc/apt/sources.list
     fc-cache -f -v && \
     npx -y playwright@latest install-deps && \
     npx -y playwright@latest install chrome && \
-    npm i -g paperclipai && \
+    npm i -g paperclipai@2026.427.0 && \
     npm i -g opencode-ai && \
     rm -rf /tmp/*
 
