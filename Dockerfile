@@ -33,6 +33,9 @@ RUN sed -i 's/Components: main/Components: main contrib/g' /etc/apt/sources.list
     npx -y playwright@latest install chrome && \
     npm i -g paperclipai@2026.427.0 && \
     npm i -g opencode-ai && \
+# change log level
+    sed -i 's/level: "debug"/level: process.env.PAPERCLIP_LOG_LEVEL || "debug"/g' /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/server/dist/middleware/logger.js && \
+    sed -i 's/return "info"/return process.env.PAPERCLIP_LOG_LEVEL || "debug"/g' /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/server/dist/middleware/logger.js && \
     rm -rf /tmp/*
 
 USER node
