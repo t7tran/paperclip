@@ -1,4 +1,4 @@
-FROM node:24.14.1-bookworm-slim
+FROM node:24.15.0-bookworm-slim
 
 RUN sed -i 's/Components: main/Components: main contrib/g' /etc/apt/sources.list.d/debian.sources && \
     apt update && \
@@ -31,7 +31,7 @@ RUN sed -i 's/Components: main/Components: main contrib/g' /etc/apt/sources.list
     fc-cache -f -v && \
     npx -y playwright@latest install-deps && \
     npx -y playwright@latest install chrome && \
-    npm i -g paperclipai@2026.428.0 && \
+    npm i -g paperclipai@2026.512.0 && \
     npm i -g opencode-ai && \
 # change log level
     sed -i 's/level: "debug"/level: process.env.PAPERCLIP_LOG_LEVEL || "debug"/g' /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/server/dist/middleware/logger.js && \
