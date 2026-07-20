@@ -31,7 +31,7 @@ RUN sed -i 's/Components: main/Components: main contrib/g' /etc/apt/sources.list
     fc-cache -f -v && \
     npx -y playwright@latest install-deps && \
     npx -y playwright@latest install chrome && \
-    npm i -g paperclipai@2026.609.0 && \
+    npm i -g paperclipai@2026.720.0 && \
 # quick patch for https://github.com/paperclipai/paperclip/issues/7771
     sed -i 's/PAPERCLIP_API_URL = apiUrl/PAPERCLIP_API_URL = process.env.PAPERCLIP_API_URL2 ?? apiUrl/g' /usr/local/lib/node_modules/paperclipai/node_modules/@paperclipai/adapter-utils/dist/server-utils.js && \
     npm i -g opencode-ai && \
